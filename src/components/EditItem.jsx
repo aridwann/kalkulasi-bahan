@@ -3,24 +3,18 @@ import { useState } from "react";
 function EditItem({ data, changeIsEdit, calc }) {
   const [value, setValue] = useState(data.value);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    setValue(e.target.value);
 
     calc(data.id, value);
-    setValue("");
   };
   return (
     <div>
       <label>{data.name}</label>
       <div>
-        <input
-          type="number"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <input type="number" value={value} onChange={handleChange} />
         <div>
-          <button onClick={handleSubmit}>Oke</button>
-          <button onClick={() => changeIsEdit(data.id)}>Batal</button>
+          <button onClick={() => changeIsEdit(data.id)}>Selesai</button>
         </div>
       </div>
     </div>

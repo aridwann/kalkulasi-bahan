@@ -78,27 +78,39 @@ function App() {
 
   const calc = (index, jumlah) => {
     setData(
-      data.map((item) =>
-        item.id == index
-          ? {
-              ...item,
-              isEditing: !item.isEditing,
-            }
-          : item
-      )
-    );
-    setData((prev) =>
-      prev.map((item) => ({
+      data.map((item) => ({
         ...item,
-        value: ((jumlah / data[index].proporsi) * item.proporsi).toFixed(3),
+        value: formatAngka(
+          ((jumlah / data[index].proporsi) * item.proporsi).toFixed(3)
+        ),
       }))
     );
-    setData((prev) =>
-      prev.map((item) =>
-        item.id !== index ? { ...item, showEditBtn: !item.showEditBtn } : item
-      )
-    );
   };
+
+  function formatAngka(angka) {
+    // Konversi angka menjadi string untuk memudahkan manipulasi
+    let angkaString = angka.toString();
+
+    // Pisahkan bagian bilangan bulat dan desimal
+    let bagianBulat, bagianDesimal;
+    let titikDesimal = angkaString.indexOf(".");
+    if (titikDesimal !== -1) {
+      bagianBulat = angkaString.slice(0, titikDesimal);
+      bagianDesimal = angkaString.slice(titikDesimal);
+    } else {
+      bagianBulat = angkaString;
+      bagianDesimal = "";
+    }
+
+    // Tambahkan titik pemisah ribuan pada bagian bilangan bulat
+    bagianBulat = bagianBulat.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    // Ganti titik desimal dengan koma
+    bagianDesimal = bagianDesimal.replace(".", ",");
+
+    // Gabungkan kembali bagian bilangan bulat dan desimal
+    return bagianBulat + bagianDesimal;
+  }
 
   return (
     <div id="container">
