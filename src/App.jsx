@@ -88,7 +88,7 @@ function App() {
   };
 
   function formatAngka(angka) {
-    // Konversi angka menjadi string untuk memudahkan manipulasi
+    // Konversi ke string untuk manipulasi
     let angkaString = angka.toString();
 
     // Pisahkan bagian bilangan bulat dan desimal
@@ -100,6 +100,14 @@ function App() {
     } else {
       bagianBulat = angkaString;
       bagianDesimal = "";
+    }
+
+    // Hapus nol di belakang koma jika ada
+    if (bagianDesimal === ".000") {
+      bagianDesimal = "";
+    } else {
+      // Hapus nol di belakang koma jika ada lebih dari 1 digit di belakang koma
+      bagianDesimal = bagianDesimal.replace(/\.0+$/, "");
     }
 
     // Tambahkan titik pemisah ribuan pada bagian bilangan bulat
