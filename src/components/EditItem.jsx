@@ -13,7 +13,7 @@ function EditItem({ data, changeIsEdit, calc }) {
     <div>
       <label>{data.name}</label>
       <div>
-        <input type="number" value={value} onChange={handleChange} />
+        <input type="number" min="0" value={value} onChange={handleChange} />
         <div>
           <button onClick={() => changeIsEdit(data.id)}>Selesai</button>
         </div>
