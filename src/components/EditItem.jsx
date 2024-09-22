@@ -4,9 +4,10 @@ function EditItem({ data, changeIsEdit, calc }) {
   const [value, setValue] = useState(data.value);
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
 
-    calc(data.id, value);
+    calc(data.id, newValue);
   };
   return (
     <div>
