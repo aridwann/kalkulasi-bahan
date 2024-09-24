@@ -65,3 +65,27 @@ button {
 .none {
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  section {
+    width: 310px;
+    padding: 15px;
+  }
+  button,
+  p,
+  section div div p,
+  section div input {
+    font-size: 14px;
+  }
+  button {
+    width: 60px;
+    margin-left: 3px;
+  }
+  section div input {
+    width: 75px;
+  }
+}

@@ -4,7 +4,6 @@ function Item({ data, changeIsEdit }) {
       <p>
         {data.proporsi} | <b>{data.name}</b>
       </p>
-      <p></p>
       <div>
         <p>{data.value} gram</p>
         <button
