@@ -7,7 +7,7 @@ function Item({ data, changeIsEdit }) {
       <div>
         <p>{data.value} gram</p>
         <button
-          className={!data.showEditBtn && "none"}
+          className={!data.showEditBtn ? "none" : undefined}
           onClick={() => changeIsEdit(data.id)}
         >
           Edit

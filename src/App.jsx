@@ -76,16 +76,36 @@ function App() {
     );
   };
 
-  const calc = (index, jumlah) => {
+  const adjustValues = (id, newValue) => {
     setData(
       data.map((item) => ({
         ...item,
         value: formatAngka(
-          ((jumlah / data[index].proporsi) * item.proporsi).toFixed(3)
+          ((newValue / data[id].proporsi) * item.proporsi).toFixed(3)
         ),
       }))
     );
   };
+
+  function adjustProportions(id, newValue) {
+    const adjustmentFactor = (1 - newValue) / (1 - data[id].proporsi);
+
+    setData(
+      data.map((item) =>
+        item.id === id ? { ...item, proporsi: newValue } : item
+      )
+    );
+    setData((prev) =>
+      prev.map((item) =>
+        item.id !== id
+          ? {
+              ...item,
+              proporsi: (item.proporsi *= adjustmentFactor).toFixed(3),
+            }
+          : item
+      )
+    );
+  }
 
   function formatAngka(angka) {
     // Konversi ke string untuk manipulasi
@@ -129,9 +149,9 @@ function App() {
             <EditItem
               key={item.id}
               data={item}
-              // editValue={editValue}
-              calc={calc}
+              adjustValues={adjustValues}
               changeIsEdit={changeIsEdit}
+              adjustProportions={adjustProportions}
             />
           ) : (
             <Item key={item.id} data={item} changeIsEdit={changeIsEdit} />
