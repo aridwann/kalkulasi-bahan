@@ -22,6 +22,7 @@ function EditItem({ data, changeIsEdit, adjustValues, adjustProportions }) {
     <div>
       <p>
         <input
+          className="proporsi"
           type="number"
           min={0}
           max={1}
