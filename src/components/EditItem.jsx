@@ -11,7 +11,9 @@ function EditItem({ data, changeIsEdit, calc }) {
   };
   return (
     <div>
-      <label>{data.name}</label>
+      <label>
+        {data.proporsi} | <b>{data.name}</b>
+      </label>
       <div>
         <input type="number" min="0" value={value} onChange={handleChange} />
         <div>

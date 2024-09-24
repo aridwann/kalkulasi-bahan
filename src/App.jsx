@@ -122,8 +122,8 @@ function App() {
 
   return (
     <div id="container">
-      <h1>Kalkulasi Bahan</h1>
       <section>
+        <h1>KALKULASI BAHAN</h1>
         {data.map((item) =>
           item.isEditing ? (
             <EditItem

@@ -1,7 +1,10 @@
 function Item({ data, changeIsEdit }) {
   return (
     <div>
-      <label>{data.name}</label>
+      <p>
+        {data.proporsi} | <b>{data.name}</b>
+      </p>
+      <p></p>
       <div>
         <p>{data.value} gram</p>
         <button
