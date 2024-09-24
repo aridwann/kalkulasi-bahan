@@ -21,15 +21,19 @@ function EditItem({ data, changeIsEdit, adjustValues, adjustProportions }) {
   return (
     <div>
       <p>
-        <input
-          className="proporsi"
-          type="number"
-          min={0}
-          max={1}
-          value={proporsi}
-          onChange={handleProporsi}
-        />
-        | <b>{data.name}</b>
+        {data.isLock ? (
+          data.proporsi
+        ) : (
+          <input
+            className="proporsi"
+            type="number"
+            min={0}
+            max={1}
+            value={proporsi}
+            onChange={handleProporsi}
+          />
+        )}
+        &nbsp;| <b>{data.name}</b>
       </p>
       <div>
         <input type="number" min={0} value={value} onChange={handleValue} />

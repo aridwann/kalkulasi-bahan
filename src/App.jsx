@@ -12,6 +12,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 1,
@@ -20,6 +21,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 2,
@@ -28,6 +30,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 3,
@@ -36,6 +39,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 4,
@@ -44,6 +48,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 5,
@@ -52,6 +57,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
     {
       id: 6,
@@ -60,6 +66,7 @@ function App() {
       value: 0,
       isEditing: false,
       showEditBtn: true,
+      isLock: false,
     },
   ]);
 
@@ -72,6 +79,14 @@ function App() {
     setData((prev) =>
       prev.map((item) =>
         item.id !== id ? { ...item, showEditBtn: !item.showEditBtn } : item
+      )
+    );
+  };
+
+  const changeIsLock = (id) => {
+    setData(
+      data.map((item) =>
+        item.id === id ? { ...item, isLock: !item.isLock } : item
       )
     );
   };
@@ -97,7 +112,7 @@ function App() {
     );
     setData((prev) =>
       prev.map((item) =>
-        item.id !== id
+        item.id !== id && item.isLock !== true
           ? {
               ...item,
               proporsi: (item.proporsi *= adjustmentFactor).toFixed(3),
@@ -154,9 +169,17 @@ function App() {
               adjustProportions={adjustProportions}
             />
           ) : (
-            <Item key={item.id} data={item} changeIsEdit={changeIsEdit} />
+            <Item
+              key={item.id}
+              data={item}
+              changeIsEdit={changeIsEdit}
+              changeIsLock={changeIsLock}
+            />
           )
         )}
+        <p>
+          Catatan: <span>U</span> = tidak dikunci, <span>8</span> = dikunci
+        </p>
       </section>
     </div>
   );

@@ -1,7 +1,10 @@
-function Item({ data, changeIsEdit }) {
+function Item({ data, changeIsEdit, changeIsLock }) {
   return (
     <div>
       <p>
+        <button className="kunci" onClick={() => changeIsLock(data.id)}>
+          {data.isLock ? "8" : "U"}
+        </button>
         {data.proporsi} | <b>{data.name}</b>
       </p>
       <div>
